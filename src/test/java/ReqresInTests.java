@@ -17,6 +17,11 @@ public class ReqresInTests {
     void successUsersListTest() {
         given()
                 .when()
-
+                .get("/api/unknown")
+                .then()
+                .statusCode(200)
+                .body("page", is(1))
+                .body("total_pages", is(2))
+                .body("support.text", is("To keep ReqRes free, contributions towards server costs are appreciated!"));
     }
 }
