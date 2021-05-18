@@ -7,6 +7,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.*;
+
 public class ReqresInTests {
 
 
@@ -16,7 +17,7 @@ public class ReqresInTests {
     }
 
     @Test
-    void successListRESOURCETest() {
+    void successListResourceTest() {
         given()
                 .when()
                 .get("/api/unknown")
@@ -26,8 +27,9 @@ public class ReqresInTests {
                 .body("total_pages", is(2))
                 .body("support.text", is("To keep ReqRes free, contributions towards server costs are appreciated!"));
     }
+
     @Test
-    public void successfulUsersLListTest() {
+    public void successUsersLListTest() {
         given().when()
                 .get("/api/users?page=2")
                 .then()
@@ -55,7 +57,7 @@ public class ReqresInTests {
     }
 
     @Test
-    void successDELAYEDRESPONSETest() {
+    void successDelayedResponseTest() {
         given()
                 .contentType(JSON)
                 .when()
@@ -69,7 +71,7 @@ public class ReqresInTests {
     }
 
     @Test
-    public void unsuccessfulLoginTest() {
+    public void unsuccessLoginTest() {
         given().contentType(ContentType.JSON)
                 .body("{ \"email\": \"eve.holt@reqres.in\"}")
                 .when()
@@ -80,7 +82,7 @@ public class ReqresInTests {
     }
 
     @Test
-    public void successfulDeleteUserTest() {
+    public void successDeleteUserTest() {
         given().contentType(ContentType.JSON)
                 .when()
                 .delete("/api/users/2")
@@ -89,7 +91,7 @@ public class ReqresInTests {
     }
 
     @Test
-    public void successfulRegistrationTest() {
+    public void successRegistrationTest() {
         given().contentType(ContentType.JSON)
                 .body("{ \"email\": \"eve.holt@reqres.in\", " +
                         "\"password\": \"pistol\" }")
@@ -102,7 +104,7 @@ public class ReqresInTests {
     }
 
     @Test
-    public void successfulSingleUserTest() {
+    public void successSingleUserTest() {
         given().when()
                 .get("/api/users/2")
                 .then()
